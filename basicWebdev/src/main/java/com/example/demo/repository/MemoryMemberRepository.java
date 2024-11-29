@@ -22,13 +22,13 @@ public class MemoryMemberRepository implements MemberRepository{
         return Optional.ofNullable(store.get(id));
     }
 
-    /* filter --> check if the name(from parameter) is the same
-       findAny --> return any if find one
-
+    /*
+    filter --> check if the name(from parameter) is the same
+    findAny --> return any if find one
     */
     @Override
     public Optional<Member> findByName(String name) {
-        store.values().stream()
+        return store.values().stream()
                 .filter(m -> m.getName().equals(name))
                 .findAny();
     }
