@@ -1,12 +1,14 @@
 package com.example.demo.controller;
 
+import org.springframework.ui.Model;
 import com.example.demo.domain.Member;
 import com.example.demo.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 //create an object in the spring container
 @Controller
@@ -39,5 +41,12 @@ public class MemberController {
 
         // after sign in, return back to home
         return "redirect:/";
+    }
+
+    @GetMapping(value = "/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
     }
 }

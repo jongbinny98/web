@@ -41,7 +41,7 @@ public class MemberService {
     /**
      * List employee
      */
-    public List<Member> findMember() {
+    public List<Member> findMembers() {
         return memberRepository.findAll();
     }
 
